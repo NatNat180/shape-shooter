@@ -6,11 +6,18 @@ public class ShapeBehaviour : MonoBehaviour {
 
 	Rigidbody shapeBody;
 	Camera mainCamera;
+	public GameObject particleObject;
+	ParticleSystem particleSys;
+	Renderer particleRend;
+	Renderer shapeRend;
 
 	void Start() 
 	{
 		shapeBody = GetComponent<Rigidbody>();
 		mainCamera = GameObject.Find("MainCam").GetComponent<Camera>();
+		particleSys = particleObject.GetComponent<ParticleSystem>();
+		particleRend = particleSys.GetComponent<Renderer>();
+		shapeRend = gameObject.GetComponent<Renderer>();
 	}
 	
 	void Update() 
@@ -27,6 +34,8 @@ public class ShapeBehaviour : MonoBehaviour {
 	{
 		if (Time.timeScale == 1)
 		{
+			particleRend.material = shapeRend.material;
+			Instantiate(particleObject, transform.position, Quaternion.identity);
 			Destroy(gameObject);
 			GameProperties.PlayerScore += 10;
 		}
