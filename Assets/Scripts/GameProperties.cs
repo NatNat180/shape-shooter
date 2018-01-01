@@ -13,6 +13,7 @@ public class GameProperties : MonoBehaviour {
 	public Button restartButton;
 	public Button quitButton;
 	public GUIText finalScore;
+	public static AudioSource PlayerHurtSound;
 
 	void Start() 
 	{
@@ -24,6 +25,8 @@ public class GameProperties : MonoBehaviour {
 		
 		gameOverButtons = GameObject.FindGameObjectsWithTag("GameOver");
 		hideGameOver();
+
+		PlayerHurtSound = GetComponent<AudioSource>();
 	}
 
 	void Update()
